@@ -85,7 +85,7 @@ gulp.task('scripts', function() {
         .pipe(terser())
         .pipe(gulp.dest('./dist/js'))
         .pipe(sourcemaps.write())
-        //.pipe(rename('scripts.min.js'))
+        .pipe(rename('scripts.min.js'))
         .pipe(browserSync.reload({
              stream: true
          }))
