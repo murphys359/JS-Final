@@ -20,7 +20,7 @@ const browserSync = require('browser-sync').create();
 gulp.task('browserSync', function() {
     browserSync.init({
         server: {
-            baseDir: './',
+            baseDir: './dist',
             index: "index.html"
        },
     })
@@ -76,7 +76,16 @@ gulp.task('scripts', function() {
          }))
 });
 
-gulp.task('default',['browserSync', 'sassworkflow', 'scripts', 'lint'], function() {
+gulp.task('html', function() {
+    return gulp.src('src/*.html')
+        .pipe(gulp.dest('./dist'))
+        .pipe(browserSync.reload({
+             stream: true
+         }));
+});
+
+gulp.task('default',['browserSync', 'sassworkflow', 'scripts', 'lint', 'html'], function() {
     gulp.watch('./src/js/*.js', ['lint', 'scripts']);
     gulp.watch('./src/sass/**/*.scss', ['sassworkflow']);
+    gulp.watch('./src/*.html',['html']);
 })
