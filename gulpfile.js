@@ -5,6 +5,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const cssnano = require('gulp-cssnano');
 const sourcemaps = require('gulp-sourcemaps');
+const nodemon = require('gulp-nodemon');
 const autoprefixer = require('gulp-autoprefixer');
 
 // JS packages
@@ -17,14 +18,28 @@ const babel = require('gulp-babel');
 // Web packages
 const browserSync = require('browser-sync').create();
 
-gulp.task('browserSync', function() {
-    browserSync.init({
-        server: {
-            baseDir: './dist',
-            index: "index.html"
-       },
+// Code from https://gist.github.com/sogko/b53d33d4f3b40d3b4b2e
+gulp.task('browserSync', ['nodemon'], function() {
+    browserSync.init(null,{
+        proxy:"http://localhost:5000",
+        files:["dist/**/*.*"],
+        port: 7000
     })
 })
+
+gulp.task('nodemon', function (cb) {
+    
+    var started = false;
+    
+    return nodemon({
+        script: 'dist/server.js'
+    }).on('start', function () {
+        if (!started) {
+            cb();
+            started = true; 
+        } 
+    });
+});
 
 gulp.task('sassworkflow', function () {
     gulp.src([
@@ -70,22 +85,23 @@ gulp.task('scripts', function() {
         .pipe(terser())
         .pipe(gulp.dest('./dist/js'))
         .pipe(sourcemaps.write())
-        .pipe(rename('scripts.min.js'))
+        //.pipe(rename('scripts.min.js'))
         .pipe(browserSync.reload({
              stream: true
          }))
 });
 
 gulp.task('html', function() {
-    return gulp.src('src/*.html')
+    return gulp.src(['src/*.html', 'src/*.js'])
         .pipe(gulp.dest('./dist'))
         .pipe(browserSync.reload({
              stream: true
          }));
 });
 
-gulp.task('default',['browserSync', 'sassworkflow', 'scripts', 'lint', 'html'], function() {
+gulp.task('default',['sassworkflow', 'scripts', 'lint', 'html','browserSync'], function() {
     gulp.watch('./src/js/*.js', ['lint', 'scripts']);
     gulp.watch('./src/sass/**/*.scss', ['sassworkflow']);
     gulp.watch('./src/*.html',['html']);
+    gulp.watch('./src/*.js', ['html']);
 })
