@@ -12,11 +12,27 @@ html {
 button {
     display: block;
     margin: $margins;
-    border: 100px solid $dark-color;
+    border: 10px solid $dark-color;
     font-size: $font-size*1.5;
     padding: $font-size/1.5;
     border-radius: 3px;
  background: linear-gradient(to bottom, green, white);
     transform: scale(.5);
 
+}
+
+.phoneNumber{
+  width: 250px;
+  height: 30px;
+  font-family: Arial, Helvetica, Sans-serif;
+  font-size: 14px;
+  padding-left:10px;
+  outline: none;
+  border-color: gray;
+  font-weight: lighter;
+}
+
+body {
+  background-color: lightblue;
+  font-family: Arial;
 }

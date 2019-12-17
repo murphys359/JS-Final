@@ -4,71 +4,21 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The Parsons Web Project</title>
-  <meta name="description" content="The Dummy Page">
-  <meta name="author" content="Parsons">
+  <title>JS Final</title>
+  <meta name="description" content="JS Final">
+  <meta name="author" content="Stephanie">
 
   <link rel="stylesheet" href="css/main.css">
 
 </head>
 
 <body>
+  <!-- Referencing Source: https://output.jsbin.com/sujojex?fbclid=IwAR2nJUYfW88eyQArn0iG9kr8dSamtndW6y-jGxqBEw2iyyBWH2mtm1b3de8 -->
 
-<div class="section">
-
-
-  <div class="main">
-    <h1>{{ head_message }}</h1>
-
-    <ul>
-      <li>
-        First Name Last Name
-      </li>
-      <li>
-        First Name Last Name
-      </li>
-    </ul>
-    <div>
-    <button class="button" id="GetUsersAPI">Get API results</button>
-  </div>
-  </div>
-
-    <div class="container">
-      <div id="Output" class="card">
-        <div class="card-body">
-          Return content here
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
-
-      <hr>
-
-      <footer>
-        <p class="text-center">&copy; Company 2015</p>
-      </footer>
-    </div>
-</div>
-
+  <h1> Dog Delivery! </h1>
+  <input type="text" class="phoneNumber" id="phone" name="phone">
+  <input type="button" onclick="getDoggos()" value="Send me a dog!"><br/>
+  <span style = "color:red;", id="error"></span><span style="color:green," id="success"></span>
 
 
 
