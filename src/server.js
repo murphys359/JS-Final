@@ -15,10 +15,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static('dist'));
+//type local host 5000 / sends to server, sends back html
+//get is for getting data
 app.get('/', function(req, res) {
     res.sendfile('index.html');
 });
 
+//post is for sending data 
 //receving post request url and phone number 
 app.post('/send_sms', async (req, res) => {
 	console.log(req.body);

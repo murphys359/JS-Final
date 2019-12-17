@@ -22,7 +22,7 @@ function getDoggos() {
 
 function sendDog(json_data) {
 	//post request: send info to server
-	//tells server to dog image and phone number 
+	//sends url and image to the server
 	if(validatePhone(document.getElementById('phone').value)) {
 		fetch('/send_sms', {
       method: 'POST',
@@ -30,18 +30,25 @@ function sendDog(json_data) {
       headers: {
         'Content-Type': 'application/json'
       },
+      //this converts to JSON
       body: JSON.stringify({
       	//url to dog and phone number
         url: json_data.message,
         phone: replaceAll(document.getElementById('phone').value, "-","")
       })
+      //then waits for response, converts response json 
     }).then(function (resp) {
+    	//convert from json to normal info
       resp.json().then(function (json_data) {
+      	//if successfully send text message then tell the user whether it was succes or failure
         if (json_data.status == 'success') {
+        	//nothing shows up in red
           document.getElementById('success').innerHTML = "Sent the dog!";
           document.getElementById('error').innerHTML = "";
         } else {
-          error_message_1();
+        	//nothing shows up in green
+           document.getElementById('success').innerHTML = "";
+  			document.getElementById('error').innerHTML = "Error! Issue sending message. Check your phone number!";
         }
       });
     });
@@ -54,13 +61,6 @@ function sendDog(json_data) {
 
 	
 }
-
-function error_message_1(error) {
-  document.getElementById('success').innerHTML = "";
-  document.getElementById('error').innerHTML = "Error! Issue sending message. Check your phone number!";
-}
-
-
 
 
 
